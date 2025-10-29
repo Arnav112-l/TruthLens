@@ -15,9 +15,11 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? true  // Allow all origins in production (Vercel handles this)
+    ? '*'  // Allow all origins in production
     : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'],
-  credentials: true,
+  credentials: process.env.NODE_ENV !== 'production',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
