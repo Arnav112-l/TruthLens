@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Shield, CheckCircle, AlertTriangle, TrendingUp, Users, Lock, ArrowRight, Eye } from 'lucide-react';
+import { Shield, CheckCircle, AlertTriangle, TrendingUp, Users, Eye, ArrowRight } from 'lucide-react';
 
 export default function LandingPage() {
   const features = [
@@ -53,16 +53,10 @@ export default function LandingPage() {
             </div>
             <div className="flex items-center gap-4 animate-slide-left">
               <Link
-                to="/login"
-                className="px-6 py-2 text-amber-800 dark:text-amber-600 font-medium hover:bg-amber-50 dark:hover:bg-amber-900/20 rounded-lg transition-all hover:scale-105"
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/signup"
+                to="/dashboard"
                 className="px-6 py-2 bg-gradient-to-r from-amber-800 to-amber-900 text-white font-medium rounded-lg hover:shadow-lg hover:scale-105 transition-all animate-bounce-subtle"
               >
-                Get Started
+                Enter Portal
               </Link>
             </div>
           </div>
@@ -92,17 +86,11 @@ export default function LandingPage() {
               </p>
               <div className="flex flex-wrap gap-4 animate-slide-up" style={{ animationDelay: '500ms' }}>
                 <Link
-                  to="/signup"
+                  to="/dashboard"
                   className="px-8 py-4 bg-gradient-to-r from-amber-800 to-amber-900 text-white font-semibold rounded-xl hover:shadow-2xl hover:scale-105 transition-all flex items-center gap-2 group animate-glow-pulse"
                 >
-                  Start Verification
+                  Access Dashboard
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
-                <Link
-                  to="/login"
-                  className="px-8 py-4 border-2 border-amber-900/20 dark:border-amber-700/30 text-amber-900 dark:text-amber-600 font-semibold rounded-xl hover:bg-amber-50 dark:hover:bg-amber-900/20 transition-all hover:scale-105"
-                >
-                  Sign In
                 </Link>
               </div>
             </div>

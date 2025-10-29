@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
 import Layout from './components/Layout';
+import LandingPage from './pages/LandingPage';
 import Dashboard from './pages/Dashboard';
 import NewsVerification from './pages/NewsVerification';
 import DeepfakeReports from './pages/DeepfakeReports';
@@ -14,11 +15,7 @@ function App() {
     <ThemeProvider>
       <Router>
         <Routes>
-          <Route path="/" element={
-            <Layout>
-              <Dashboard />
-            </Layout>
-          } />
+          <Route path="/" element={<LandingPage />} />
           <Route path="/dashboard" element={
             <Layout>
               <Dashboard />
