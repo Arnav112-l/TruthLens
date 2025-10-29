@@ -1,0 +1,26 @@
+{
+  "name": "truthlens-dashboard",
+  "version": "1.0.0",
+  "description": "TruthLens - Real-time misinformation detection and digital literacy platform",
+  "scripts": {
+    "dev": "concurrently \"npm run client\" \"npm run server\"",
+    "client": "cd client && npm run dev",
+    "server": "cd server && npm run dev",
+    "install-all": "npm install && cd client && npm install && cd ../server && npm install"
+  },
+  "keywords": [
+    "misinformation",
+    "deepfake",
+    "digital-literacy",
+    "fake-news"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
