@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 const corsOptions = {
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-app.vercel.app', 'https://*.vercel.app'] 
+    ? true  // Allow all origins in production (Vercel handles this)
     : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'],
   credentials: true,
   optionsSuccessStatus: 200
@@ -58,6 +58,12 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-});
+// Only listen if not in serverless environment (Vercel)
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on port ${PORT}`);
+  });
+}
+
+// Export for Vercel serverless
+export default app;
