@@ -1,13 +1,9 @@
-import { Bell, Search, Menu, Sun, Moon, LogOut, CheckCircle, AlertTriangle, Info, X } from 'lucide-react';
+import { Bell, Search, Menu, Sun, Moon, CheckCircle, AlertTriangle, Info, X } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
-import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import { useState, useRef, useEffect } from 'react';
 
 export default function Header({ toggleSidebar }) {
   const { darkMode, toggleDarkMode } = useTheme();
-  const { user, logout } = useAuth();
-  const navigate = useNavigate();
   const [showNotifications, setShowNotifications] = useState(false);
   const notificationsRef = useRef(null);
   const [notifications, setNotifications] = useState([
@@ -44,21 +40,6 @@ export default function Header({ toggleSidebar }) {
       read: true,
     },
   ]);
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
-
-  const getUserInitials = () => {
-    if (!user || !user.name) return 'U';
-    return user.name
-      .split(' ')
-      .map(n => n[0])
-      .join('')
-      .toUpperCase()
-      .slice(0, 2);
-  };
 
   const markAsRead = (id) => {
     setNotifications(notifications.map(notif => 
@@ -244,33 +225,6 @@ export default function Header({ toggleSidebar }) {
                 </button>
               </div>
             )}
-          </div>
-        </div>
-        
-        {/* User Avatar with Dropdown */}
-        <div className="relative group">
-          <div className="flex items-center gap-3 cursor-pointer">
-            <div className="relative">
-              <div className="w-10 h-10 bg-gradient-to-br from-amber-700 to-amber-900 rounded-full flex items-center justify-center text-white font-semibold transition-all group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-amber-500/50">
-                {getUserInitials()}
-              </div>
-              <span className="absolute bottom-0 right-0 w-3 h-3 bg-success-500 rounded-full border-2 border-white dark:border-gray-800"></span>
-            </div>
-          </div>
-          
-          {/* Dropdown Menu */}
-          <div className="absolute right-0 top-full mt-2 w-48 bg-white dark:bg-gray-800 rounded-xl shadow-lg border border-gray-200 dark:border-gray-700 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
-            <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
-              <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{user?.name || 'User'}</p>
-              <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{user?.email}</p>
-            </div>
-            <button
-              onClick={handleLogout}
-              className="w-full px-4 py-2 text-left text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors flex items-center gap-2"
-            >
-              <LogOut className="w-4 h-4" />
-              <span>Logout</span>
-            </button>
           </div>
         </div>
       </div>
