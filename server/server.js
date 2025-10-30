@@ -13,16 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' 
-    ? '*'  // Allow all origins in production
-    : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002'],
-  credentials: process.env.NODE_ENV !== 'production',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  optionsSuccessStatus: 200
-};
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -60,12 +51,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: 'Something went wrong!' });
 });
 
-// Only listen if not in serverless environment (Vercel)
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-  });
-}
-
-// Export for Vercel serverless
-export default app;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
