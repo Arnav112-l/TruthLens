@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "cd client && npm install && npm run build",
+  "installCommand": "npm install",
   "builds": [
     {
       "src": "client/package.json",
@@ -26,5 +28,8 @@
       "src": "/(.*)",
       "dest": "/client/dist/index.html"
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 }
